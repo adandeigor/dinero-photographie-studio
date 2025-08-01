@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Camera, Palette, PictureInPicture, PersonStanding } from 'lucide-react';
 
 interface ServiceItem {
@@ -47,22 +48,34 @@ const ServicesSection: React.FC = () => {
       />
       <div className="relative z-10 min-h-screen bg-black/50 backdrop-blur-lg flex items-center justify-center py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
-            Nos Services
-          </h2>
-          <p className="text-base sm:text-lg text-center mb-12 max-w-2xl mx-auto">
-            Découvrez les services proposés par <span className="font-semibold">Dinero Photographie</span> pour transformer vos moments en souvenirs inoubliables, avec une touche de créativité et de professionnalisme.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
+              Nos Services
+            </h2>
+            <p className="text-base sm:text-lg text-center mb-12 max-w-2xl mx-auto">
+              Découvrez les services proposés par <span className="font-semibold">Dinero Photographie</span> pour transformer vos moments en souvenirs inoubliables, avec une touche de créativité et de professionnalisme.
+            </p>
+          </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={service.title}
-                className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg p-6 text-center flex flex-col items-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <service.icon className="w-12 h-12 mb-4 text-white" />
-                <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
-                <p className="text-sm sm:text-base">{service.description}</p>
-              </div>
+                <div className="bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg p-6 text-center flex flex-col items-center">
+                  <service.icon className="w-12 h-12 mb-4 text-white" />
+                  <h3 className="text-xl font-semibold mb-2">{service.title}</h3>
+                  <p className="text-sm sm:text-base">{service.description}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>

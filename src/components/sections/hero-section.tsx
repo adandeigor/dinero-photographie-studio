@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 
@@ -17,11 +18,11 @@ const HeroSection: React.FC = () => {
 
   // Liste des vidéos
   const videos: Video[] = [
-    { src: '/videos/vidéo5.mp4', alt: 'Obscurateur' },
-    { src: '/videos/vidéo3.mp4', alt: 'Séance photo en lumière naturelle' },
-    { src: '/videos/vidéo4.mp4', alt: 'Mariage capturé en extérieur' },
-    { src: '/videos/vidéo1.mp4', alt: 'Portrait artistique en studio' },
-    { src: '/videos/vidéo2.mp4', alt: 'Paysage urbain au crépuscule' },
+    { src: '/videos/vidéo5.webm', alt: 'Obscurateur' },
+    { src: '/videos/vidéo3.webm', alt: 'Séance photo en lumière naturelle' },
+    { src: '/videos/vidéo4.webm', alt: 'Mariage capturé en extérieur' },
+    { src: '/videos/vidéo1.webm', alt: 'Portrait artistique en studio' },
+    { src: '/videos/vidéo2.webm', alt: 'Paysage urbain au crépuscule' },
   ];
 
   // Gestion des transitions vidéo
@@ -74,20 +75,27 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Conteneur du contenu scrollable */}
-      <div className="relative z-10 text-center text-white px-4">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 text-center text-white px-4"
+      >
         <h1 className="text-4xl md:text-6xl font-bold mb-4">Dinero Photographie</h1>
         <p className="text-lg md:text-2xl mb-6 max-w-2xl mx-auto">
           Chaque instant capturé avec humour, rigueur et une touche de magie par{' '}
           <span className="font-semibold">Alankpoedja Mahutin Abraham</span>.
         </p>
-        <Button
-          onClick={() => router.push('/#about')}
-          size="lg"
-          className="bg-white/20 backdrop-blur-lg border border-white/20 text-white hover:bg-white/30 transition-colors duration-300"
-        >
-          Explorer mon portfolio
-        </Button>
-      </div>
+        <motion.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+          <Button
+            onClick={() => router.push('/gallery')}
+            size="lg"
+            className="bg-white/20 backdrop-blur-lg cursor-pointer border border-white/20 text-white hover:bg-white/30 transition-colors duration-300"
+          >
+            Explorer ma gallerie de photos
+          </Button>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

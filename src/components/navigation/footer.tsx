@@ -29,7 +29,7 @@ const FooterSection: React.FC = () => {
             Accueil
           </Link>
           <Link
-            href="/#gallery"
+            href="/gallery"
             className="text-white/70 hover:text-white transition-colors duration-300"
           >
             Galerie
